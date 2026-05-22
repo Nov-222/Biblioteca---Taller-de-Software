@@ -27,3 +27,4 @@ node_modules/
 .env
 html/
 /coverage
+reporte-eslint.html

@@ -9,12 +9,12 @@ describe('HU-01: Visualización de los libros', () => {
     beforeEach(() => {vi.clearAllMocks()})
 
     test('[Happy Path]: Debe renderizar la portada, título y autor de los libros recuperados', () => {
-    const librosFalsos = [
+    const libro = [
       { id: 1, nombre: 'El Principito', autor: 'Antoine de Saint-Exupéry', portada: 'principito.jpg', copias: 3 }
     ]
 
     useBiblioteca.mockReturnValue({
-      inventario: librosFalsos,
+      inventario: libro,
       carrito: [],
       cargando: false,
       notificacion: null

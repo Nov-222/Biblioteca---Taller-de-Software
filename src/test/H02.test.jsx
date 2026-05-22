@@ -15,10 +15,10 @@ describe('HU-02: Registrar Libro para préstamo', () => {
   })
 
   test('[Happy Path]: Debe invocar la función de agregado al pulsar el botón activo', () => {
-    const libroPrueba = { id: 42, nombre: '1984', autor: 'George Orwell', portada: '1984.jpg', copias: 5 } 
+    const libro = { id: 42, nombre: '1984', autor: 'George Orwell', portada: '1984.jpg', copias: 5 } 
 
     useBiblioteca.mockReturnValue({
-      inventario: [libroPrueba],
+      inventario: [libro],
       carrito: [],
       cargando: false,
       notificacion: null,
@@ -32,7 +32,7 @@ describe('HU-02: Registrar Libro para préstamo', () => {
 
 
     expect(mockAgregarLibro).toHaveBeenCalledTimes(1)
-    expect(mockAgregarLibro).toHaveBeenCalledWith(libroPrueba)
+    expect(mockAgregarLibro).toHaveBeenCalledWith(libro)
   })
 
 
