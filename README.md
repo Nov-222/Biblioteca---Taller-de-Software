@@ -219,11 +219,18 @@ La cobertura fue calculada de forma nativa utilizando el motor **V8 (v8-coverage
 ---------------------|---------|----------|---------|---------|-------------------
 File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
 ---------------------|---------|----------|---------|---------|-------------------
-All files            |   83.33 |    81.25 |   77.77 |   82.35 |
- src                 |      60 |       75 |      50 |      60 |
-  App.jsx            |      60 |       75 |      50 |      60 | 20, 34
+All files            |   17.44 |    43.33 |   22.58 |    17.5 |
+ src                 |      50 |       75 |      50 |      50 |
+  App.jsx            |      60 |       75 |      50 |      60 | 20,34
+  main.jsx           |       0 |      100 |     100 |       0 | 5
  src/componentes     |    92.3 |     87.5 |   85.71 |   91.66 |
   DashboardLibro.jsx |     100 |      100 |     100 |     100 |
   Prestamo.jsx       |   83.33 |       75 |   66.66 |      80 | 19
   TarjetaLibro.jsx   |     100 |      100 |     100 |     100 |
+ src/funcionalidades |       0 |        0 |       0 |       0 |
+  biblioteca.js      |       0 |        0 |       0 |       0 | 4-96
+ src/libreria        |       0 |      100 |     100 |       0 |
+  supabase.js        |       0 |      100 |     100 |       0 | 3-6
+ src/servicios       |       0 |        0 |       0 |       0 |
+  serviciolibro.js   |       0 |        0 |       0 |       0 | 3-27
 ---------------------|---------|----------|---------|---------|-------------------
