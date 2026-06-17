@@ -11,8 +11,12 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'html'], 
-      include: ['src/**/*.{js,jsx}'], 
-      all: true
+      include: [
+        'src/funcionalidades/biblioteca.js',
+        'src/servicios/serviciolibro.js'
+      ], 
+      all: true,
+      reportsDirectory: './coverage'
     }
   },
 })
