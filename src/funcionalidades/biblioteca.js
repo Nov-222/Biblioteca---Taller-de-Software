@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ObtenerLibros, confirmarPrestamo } from '../servicios/serviciolibro'
+import { ObtenerLibros } from '../servicios/serviciolibro'
 
 export const useBiblioteca = () => {
   const [inventario, setInventario] = useState([])
@@ -27,7 +27,18 @@ export const useBiblioteca = () => {
   }, [])
 
   // Agregar Libro
+  const AgregarLibro = (libro) => {
+    setInventario((actual) =>
+      actual.map(item => item.id === libro.id ? { ...item, copias: item.copias - 1 } : item)
+    )
 
+    setCarrito((actual) => {
+      const existe = actual.find(item => item.id === libro.id)
+      return existe
+        ? actual.map(item => item.id === libro.id ? { ...item, cantidad: item.cantidad + 1 } : item)
+        : [...actual, { ...libro, cantidad: 1 }]
+    })
+  }
 
   // Eliminar Libro (Resta de 1 en 1)
   const EliminarLibro = (idLibro) => {
@@ -57,7 +68,5 @@ export const useBiblioteca = () => {
     setNotificacion,  
     AgregarLibro,
     EliminarLibro,
-    CancelarPrestamo,
-    ConfirmarPrestamo
   }
 }
