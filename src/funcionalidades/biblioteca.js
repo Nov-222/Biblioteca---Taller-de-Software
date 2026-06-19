@@ -27,21 +27,21 @@ export const useBiblioteca = () => {
   }, [])
 
   // Agregar Libro
-  const AgregarLibro = (libro) => {
+
+
+  // Eliminar Libro (Resta de 1 en 1)
+  const EliminarLibro = (idLibro) => {
     setInventario((actual) =>
-      actual.map(item => item.id === libro.id ? { ...item, copias: item.copias - 1 } : item)
+      actual.map(item => item.id === idLibro ? { ...item, copias: item.copias + 1 } : item)
     )
 
     setCarrito((actual) => {
-      const existe = actual.find(item => item.id === libro.id)
-      return existe
-        ? actual.map(item => item.id === libro.id ? { ...item, cantidad: item.cantidad + 1 } : item)
-        : [...actual, { ...libro, cantidad: 1 }]
+      const libro = actual.find(item => item.id === idLibro)
+      return libro.cantidad > 1
+        ? actual.map(item => item.id === idLibro ? { ...item, cantidad: item.cantidad - 1 } : item)
+        : actual.filter(item => item.id !== idLibro)
     })
   }
-
-  // Eliminar Libro (Resta de 1 en 1)
-  
 
   // Cancelar Prestamo
   
