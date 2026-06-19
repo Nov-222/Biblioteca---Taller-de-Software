@@ -41,57 +41,13 @@ export const useBiblioteca = () => {
   }
 
   // Eliminar Libro (Resta de 1 en 1)
-  const EliminarLibro = (idLibro) => {
-    setInventario((actual) =>
-      actual.map(item => item.id === idLibro ? { ...item, copias: item.copias + 1 } : item)
-    )
-
-    setCarrito((actual) => {
-      const libro = actual.find(item => item.id === idLibro)
-      return libro.cantidad > 1
-        ? actual.map(item => item.id === idLibro ? { ...item, cantidad: item.cantidad - 1 } : item)
-        : actual.filter(item => item.id !== idLibro)
-    })
-  }
+  
 
   // Cancelar Prestamo
-  const CancelarPrestamo = async () => {
-    setCargando(true)
-    try {
-      const datosOriginales = await ObtenerLibros()
-      setInventario(datosOriginales)
-      setCarrito([])
-    } catch (error) {
-      setNotificacion({
-        tipo: 'error',
-        mensaje: 'Error al eliminar libros del prestamo.'
-      })
-      console.error(error)
-    } finally {
-      setCargando(false)
-    }
-  }
+  
 
   // Confirmar Prestamo
-  const ConfirmarPrestamo = async () => {
-    try {
-      setCargando(true)
-      await confirmarPrestamo(carrito, inventario)
-      setCarrito([])
-      setNotificacion({
-        tipo: 'exito',
-        mensaje: '¡Préstamo registrado con éxito!'
-      })
-    } catch (error) {
-      setNotificacion({
-        tipo: 'error',
-        mensaje: 'Error al registrar el préstamo.'
-      })
-      console.error(error)
-    } finally {
-      setCargando(false)
-    }
-  }
+
 
   return {
     inventario,
