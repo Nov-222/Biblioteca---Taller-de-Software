@@ -14,7 +14,7 @@ export const useBiblioteca = () => {
       setInventario(datosOriginales)
       setCarrito([])
   }
-  
+
   // Carga Libros
   useEffect(() => {
     const cargarBiblioteca = async () => {
@@ -83,19 +83,21 @@ const CancelarPrestamo = async () => {
       setCargando(true)
       await confirmarPrestamo(carrito, inventario)
       setCarrito([])
-      setNotificacion({
-        tipo: 'exito',
-        mensaje: '¡Préstamo registrado con éxito!'
-      })
+      Notificacion('exito','¡Préstamo registrado con éxito!');
     } catch (error) {
-      setNotificacion({
-        tipo: 'error',
-        mensaje: 'Error al registrar el préstamo.'
-      })
+      Notificacion('error','Error al registrar el préstamo.');
       console.error(error)
     } finally {
       setCargando(false)
     }
+  }
+  
+
+  const Notificacion = (tipo_notificacion, mensaje_notificacion) => {
+    return setNotificacion({
+        tipo: tipo_notificacion,
+        mensaje: mensaje_notificacion
+    })
   }
 
   return {
