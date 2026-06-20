@@ -15,6 +15,14 @@ export const useBiblioteca = () => {
       setCarrito([])
   }
 
+    //Ajustar Copias Disponibles
+  const Modificar_Inventario_Copias = (Libro_id, numero) => {
+    setInventario((actual) =>
+      actual.map(item => item.id === Libro_id ? { ...item, copias: item.copias + numero } : item)
+    )
+  }
+
+
   // Generar Notificacion
   const Notificacion = (tipo_notificacion, mensaje_notificacion) => {
     return setNotificacion({
@@ -40,6 +48,7 @@ export const useBiblioteca = () => {
 
   // Agregar Libro
   const AgregarLibro = (libro) => {
+    console.log('Libro recibido:', libro)
     Modificar_Inventario_Copias(libro.id, -1);
 
     setCarrito((actual) => {
@@ -88,13 +97,6 @@ const CancelarPrestamo = async () => {
     } finally {
       setCargando(false)
     }
-  }
-
-  //Ajustar Copias Disponibles
-  const Modificar_Inventario_Copias = (Libro_id, numero) => {
-    setInventario((actual) =>
-      actual.map(item => item.id === Libro_id ? { ...item, copias: item.copias + numero } : item)
-    )
   }
 
   return {
