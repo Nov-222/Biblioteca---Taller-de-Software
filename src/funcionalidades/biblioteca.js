@@ -15,16 +15,21 @@ export const useBiblioteca = () => {
       setCarrito([])
   }
 
+  // Generar Notificacion
+  const Notificacion = (tipo_notificacion, mensaje_notificacion) => {
+    return setNotificacion({
+        tipo: tipo_notificacion,
+        mensaje: mensaje_notificacion
+    })
+  }
+
   // Carga Libros
   useEffect(() => {
     const cargarBiblioteca = async () => {
       try {
         await RestaurarDatos();
       } catch (error) {
-        setNotificacion({
-          tipo: 'error',
-          mensaje: 'Error al obtener los libros.'
-        })
+      Notificacion('error','Error al obtener los libros.');
         console.error(error)
       } finally {
         setCargando(false)
@@ -67,10 +72,7 @@ const CancelarPrestamo = async () => {
     try {
       await RestaurarDatos();
     } catch (error) {
-      setNotificacion({
-        tipo: 'error',
-        mensaje: 'Error al eliminar libros del prestamo.'
-      })
+      Notificacion('error','Error al eliminar libros del prestamo.');
       console.error(error)
     } finally {
       setCargando(false)
@@ -90,14 +92,6 @@ const CancelarPrestamo = async () => {
     } finally {
       setCargando(false)
     }
-  }
-  
-
-  const Notificacion = (tipo_notificacion, mensaje_notificacion) => {
-    return setNotificacion({
-        tipo: tipo_notificacion,
-        mensaje: mensaje_notificacion
-    })
   }
 
   return {
