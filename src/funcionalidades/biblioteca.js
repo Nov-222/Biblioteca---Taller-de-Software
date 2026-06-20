@@ -58,9 +58,7 @@ export const useBiblioteca = () => {
 const CancelarPrestamo = async () => {
     setCargando(true)
     try {
-      const datosOriginales = await ObtenerLibros()
-      setInventario(datosOriginales)
-      setCarrito([])
+      await RestaurarDatos();
     } catch (error) {
       setNotificacion({
         tipo: 'error',
@@ -91,6 +89,12 @@ const CancelarPrestamo = async () => {
     } finally {
       setCargando(false)
     }
+  }
+
+  const RestaurarDatos = async() => {
+      const datosOriginales = await ObtenerLibros()
+      setInventario(datosOriginales)
+      setCarrito([])
   }
 
   return {
