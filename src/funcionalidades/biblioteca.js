@@ -55,7 +55,22 @@ export const useBiblioteca = () => {
   }
 
   // Cancelar Prestamo
-
+const CancelarPrestamo = async () => {
+    setCargando(true)
+    try {
+      const datosOriginales = await ObtenerLibros()
+      setInventario(datosOriginales)
+      setCarrito([])
+    } catch (error) {
+      setNotificacion({
+        tipo: 'error',
+        mensaje: 'Error al eliminar libros del prestamo.'
+      })
+      console.error(error)
+    } finally {
+      setCargando(false)
+    }
+  }
 
   // Confirmar Prestamo
   const ConfirmarPrestamo = async () => {
@@ -86,6 +101,7 @@ export const useBiblioteca = () => {
     setNotificacion,  
     AgregarLibro,
     EliminarLibro,
-    ConfirmarPrestamo
+    ConfirmarPrestamo,
+    CancelarPrestamo
   }
 }
