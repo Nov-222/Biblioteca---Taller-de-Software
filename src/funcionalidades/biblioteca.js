@@ -52,9 +52,7 @@ export const useBiblioteca = () => {
 
   // Eliminar Libro (Resta de 1 en 1)
   const EliminarLibro = (idLibro) => {
-    setInventario((actual) =>
-      actual.map(item => item.id === idLibro ? { ...item, copias: item.copias + 1 } : item)
-    )
+    Modificar_Inventario_Copias(idLibro, +1);
 
     setCarrito((actual) => {
       const libro = actual.find(item => item.id === idLibro)
@@ -92,6 +90,7 @@ const CancelarPrestamo = async () => {
     }
   }
 
+  //Ajustar Copias Disponibles
   const Modificar_Inventario_Copias = (Libro_id, numero) => {
     setInventario((actual) =>
       actual.map(item => item.id === Libro_id ? { ...item, copias: item.copias + numero } : item)
