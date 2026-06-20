@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ObtenerLibros } from '../servicios/serviciolibro'
+import { ObtenerLibros, confirmarPrestamo } from '../servicios/serviciolibro'
 
 export const useBiblioteca = () => {
   const [inventario, setInventario] = useState([])
@@ -55,10 +55,28 @@ export const useBiblioteca = () => {
   }
 
   // Cancelar Prestamo
-  
+
 
   // Confirmar Prestamo
-
+  const ConfirmarPrestamo = async () => {
+    try {
+      setCargando(true)
+      await confirmarPrestamo(carrito, inventario)
+      setCarrito([])
+      setNotificacion({
+        tipo: 'exito',
+        mensaje: '¡Préstamo registrado con éxito!'
+      })
+    } catch (error) {
+      setNotificacion({
+        tipo: 'error',
+        mensaje: 'Error al registrar el préstamo.'
+      })
+      console.error(error)
+    } finally {
+      setCargando(false)
+    }
+  }
 
   return {
     inventario,
@@ -68,5 +86,6 @@ export const useBiblioteca = () => {
     setNotificacion,  
     AgregarLibro,
     EliminarLibro,
+    ConfirmarPrestamo
   }
 }
