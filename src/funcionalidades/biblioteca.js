@@ -7,12 +7,19 @@ export const useBiblioteca = () => {
   const [cargando, setCargando] = useState(true)
   const [notificacion, setNotificacion] = useState(null)
 
+
+  // Restaurar Todos los Datos
+  const RestaurarDatos = async() => {
+      const datosOriginales = await ObtenerLibros()
+      setInventario(datosOriginales)
+      setCarrito([])
+  }
+  
   // Carga Libros
   useEffect(() => {
     const cargarBiblioteca = async () => {
       try {
-        const libros = await ObtenerLibros()
-        setInventario(libros)
+        await RestaurarDatos();
       } catch (error) {
         setNotificacion({
           tipo: 'error',
@@ -89,12 +96,6 @@ const CancelarPrestamo = async () => {
     } finally {
       setCargando(false)
     }
-  }
-
-  const RestaurarDatos = async() => {
-      const datosOriginales = await ObtenerLibros()
-      setInventario(datosOriginales)
-      setCarrito([])
   }
 
   return {
