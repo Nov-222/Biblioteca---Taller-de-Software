@@ -12,7 +12,7 @@ vi.mock('../servicios/serviciolibro.js', () => ({
 
 import { ObtenerLibros } from '../servicios/serviciolibro'
 
-test('Funcionalidad de Agregar Libro al Carrito', async() => {
+test('AgregarLibro_UnLibroACarrito_Exito', async() => {
     //Datos cargados
     const Libros = [
         {

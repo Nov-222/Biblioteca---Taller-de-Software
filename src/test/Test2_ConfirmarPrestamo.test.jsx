@@ -13,7 +13,7 @@ vi.mock('../servicios/serviciolibro.js', () => ({
 
 import { ObtenerLibros, confirmarPrestamo  } from '../servicios/serviciolibro';
 
-test('Funcionalidad de Confirmar Prestamo', async() => {
+test('ConfirmarPrestamo_UnaCopiaLibro_Exito', async() => {
     const Libros = [
         {
             id: 1,
@@ -43,7 +43,7 @@ test('Funcionalidad de Confirmar Prestamo', async() => {
         await result.current.ConfirmarPrestamo();
     })
 
-    
+
     expect(result.current.carrito.length).toBe(0);
     expect(result.current.inventario[1].copias).toBe(2);
 })

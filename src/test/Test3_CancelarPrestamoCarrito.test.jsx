@@ -13,7 +13,7 @@ vi.mock('../servicios/serviciolibro.js', () => ({
 
 import { ObtenerLibros } from '../servicios/serviciolibro';
 
-test('Funcionalidad de Cancelar Prestamo en Carrito', async() => {
+test('CancelarPrestamo_CarritoNoVacio_Exito', async() => {
     const Libros = [
         {
             id: 1,
